@@ -1,0 +1,34 @@
+{
+  "navigation": {
+    "home": "Home",
+    "journey": "Our Journey",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title": "Shalom Gospel Church",
+    "verse": "And I tell you that you are Peter and on this rock I will build my church, and the gates of Hades will not overcome it.",
+    "reference": "Matthew 16:18"
+  },
+  "journey": {
+    "title": "Our Journey",
+    "verse": "And I tell you that you are Peter and on this rock I will build my church, and the gates of Hades will not overcome it.",
+    "verseReference": "Matthew 16:18",
+    "content1": "At the beginning of year 2005 we began a small group prayer in home, and it made the pathway to our present Shalom church. During our prayers a sister who lived in the home had special prayer request regarding a church for us. God has kept this burden in her heart. As we prayed for it God answered our prayers and gave us a church in Milano city. Throughout these years God has done great and mighty things in our church.",
+    "verse2": "The Lord's hand was with them, and a great number of people believed and turned to the Lord.",
+    "verse2Reference": "Acts 11:21",
+    "closing": "All glory, honor and praise be to our God forever!"
+  },
+  "latestMessage": {
+    "title": "Latest Video",
+    "subtitle": "Watch our most recent sermon",
+    "viewAll": "View All Videos"
+  },
+  "footer": {
+    "about": "A faith community building God's kingdom in Milan and Verona since 2005.",
+    "milan": "Milan",
+    "verona": "Verona",
+    "contacts": "Contacts",
+    "followUs": "Follow Us",
+    "copyright": "All Rights Reserved."
+  }
+}

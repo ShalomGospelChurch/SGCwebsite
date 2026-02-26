@@ -1,0 +1,34 @@
+{
+  "navigation": {
+    "home": "Home",
+    "journey": "Il Nostro Viaggio",
+    "contacts": "Contatti"
+  },
+  "hero": {
+    "title": "Shalom Gospel Church",
+    "verse": "E io ti dico: tu sei Pietro, e su questa pietra edificherò la mia chiesa, e le porte dell'Ades non la potranno vincere.",
+    "reference": "Matteo 16:18"
+  },
+  "journey": {
+    "title": "Il Nostro Viaggio",
+    "verse": "E io ti dico: tu sei Pietro, e su questa pietra edificherò la mia chiesa, e le porte dell'Ades non la potranno vincere.",
+    "verseReference": "Matteo 16:18",
+    "content1": "All'inizio del 2005 abbiamo iniziato un piccolo gruppo di preghiera a casa, e questo ha aperto la strada alla nostra attuale chiesa Shalom. Durante le nostre preghiere, una sorella che viveva in casa aveva una richiesta di preghiera speciale riguardo a una chiesa per noi. Dio ha tenuto questo peso nel suo cuore. Mentre pregavamo, Dio ha risposto alle nostre preghiere e ci ha dato una chiesa nella città di Milano. In tutti questi anni Dio ha fatto cose grandi e potenti nella nostra chiesa.",
+    "verse2": "La mano del Signore era con loro, e un gran numero credette e si convertì al Signore.",
+    "verse2Reference": "Atti 11:21",
+    "closing": "Tutta la gloria, l'onore e la lode siano al nostro Dio per sempre!"
+  },
+  "latestMessage": {
+    "title": "Novità",
+    "subtitle": "Guarda il nostro sermone più recente",
+    "viewAll": "Vedi Tutti i Video"
+  },
+  "footer": {
+    "about": "Una comunità di fede che costruisce il regno di Dio a Milano e Verona dal 2005.",
+    "milan": "Milano",
+    "verona": "Verona",
+    "contacts": "Contatti",
+    "followUs": "Seguici",
+    "copyright": "Tutti i diritti riservati."
+  }
+}
