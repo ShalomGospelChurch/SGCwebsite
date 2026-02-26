@@ -1,0 +1,35 @@
+{
+  "videos": [
+    {
+      "id": "z8m6aijiqIQ",
+      "type": "video",
+      "customThumbnail": null
+    },
+    {
+      "id": "p5xGz5laAkk",
+      "type": "live",
+      "customThumbnail": null
+    },
+    {
+      "id": "Crr1fFNuuGU",
+      "type": "live",
+      "customThumbnail": null
+    },
+    {
+      "id": "6TkKzremNlI",
+      "type": "video",
+      "customThumbnail": null
+    },
+    {
+      "id": "FGuaY9lqomk",
+      "type": "video",
+      "customThumbnail": null
+    },
+    {
+      "id": "qvuXN1nRdvE",
+      "type": "live",
+      "customThumbnail": null
+    }
+  
+  ]
+}

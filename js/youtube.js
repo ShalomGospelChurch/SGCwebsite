@@ -1,95 +1,61 @@
-// ============================================
-// *YOUTUBE.JS - YouTube API Integration
-// ============================================
-// TEMPORARILY DISABLED - Using manual video embed instead
-// Uncomment when you have the API key ready
-
-/*
-// PASTE YOUR YOUTUBE API KEY HERE
-const YOUTUBE_API_KEY = 'YOUR_API_KEY_HERE';  // ← Replace with your actual API key
-const CHANNEL_ID = 'UCxOD_MrycVgd3hUxIc1Y7Gg';  // Shalom Gospel Church channel ID
-
-async function loadLatestVideo() {
-    // If API key is not set, show error message
-    if (YOUTUBE_API_KEY === 'YOUR_API_KEY_HERE') {
-        document.getElementById('videoLoading').classList.add('hidden');
-        document.getElementById('videoError').classList.remove('hidden');
-        return;
-    }
-    
+async function loadVideos() {
     try {
-        // Fetch latest video from channel
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=1&type=video`
-        );
-        
-        if (!response.ok) {
-            throw new Error('Failed to fetch video');
-        }
-        
+        const response = await fetch('data/videos.json');
         const data = await response.json();
         
-        if (data.items && data.items.length > 0) {
-            const latestVideo = data.items[0];
-            const videoId = latestVideo.id.videoId;
-            const videoTitle = latestVideo.snippet.title;
-            
-            // Create video embed
-            const videoHTML = `
-                <div class="relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1rem;">
-                    <iframe 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                        src="https://www.youtube.com/embed/${videoId}" 
-                        title="${videoTitle}"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="mt-6 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-2">${videoTitle}</h3>
-                    <p class="text-gray-400">${new Date(latestVideo.snippet.publishedAt).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    })}</p>
-                </div>
-            `;
-            
-            // Insert video
-            document.getElementById('videoPlayer').innerHTML = videoHTML;
-            document.getElementById('videoLoading').classList.add('hidden');
-            document.getElementById('videoPlayer').classList.remove('hidden');
-        } else {
-            // No videos found
-            document.getElementById('videoLoading').classList.add('hidden');
-            document.getElementById('videoError').classList.remove('hidden');
-        }
+        const videoGrid = document.getElementById('videoGrid');
+        
+        data.videos.forEach(video => {
+            const videoCard = createVideoCard(video);
+            videoGrid.appendChild(videoCard);
+        });
+        
     } catch (error) {
-        console.error('Error loading video:', error);
-        document.getElementById('videoLoading').classList.add('hidden');
-        document.getElementById('videoError').classList.remove('hidden');
+        console.error('Error loading videos:', error);
     }
 }
 
-// Load video when page loads
-window.addEventListener('load', loadLatestVideo);
-*/
-
-// ============================================
-//* MANUAL VIDEO EMBED (Temporary Solution)
-// ============================================
-// For now, just hide loading and show the manual embed section
-
-window.addEventListener('load', () => {
-    const videoLoading = document.getElementById('videoLoading');
-    const videoError = document.getElementById('videoError');
+// Create video card element
+function createVideoCard(video) {
+    const link = document.createElement('a');
     
-    if (videoLoading) {
-        videoLoading.classList.add('hidden');
-    }
+    // Determine URL based on type
+    link.href = video.type === 'live' 
+        ? `https://www.youtube.com/live/${video.id}`
+        : `https://youtu.be/${video.id}`;
+    link.target = '_blank';
+    link.className = 'group';
     
-    if (videoError) {
-        videoError.classList.remove('hidden');
-    }
-});
+    // Use custom thumbnail or default YouTube thumbnail
+    const thumbnailUrl = video.customThumbnail 
+        ? video.customThumbnail 
+        : `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`;
+    
+    // Show LIVE badge only for live videos
+    const liveBadge = video.type === 'live' 
+        ? `<div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-2">
+               <i class="fas fa-circle text-xs"></i>
+               <span>LIVE</span>
+           </div>`
+        : '';
+    
+    link.innerHTML = `
+        <div class="relative overflow-hidden rounded-xl bg-gray-900 transition-transform duration-300 group-hover:scale-105">
+            <img src="${thumbnailUrl}" 
+                 alt="${video.type === 'live' ? 'Live Stream' : 'Video'}" 
+                 class="w-full aspect-video object-cover"
+                 onerror="this.src='https://img.youtube.com/vi/${video.id}/hqdefault.jpg'">
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                    <i class="fas fa-play text-white text-xl ml-1"></i>
+                </div>
+            </div>
+            ${liveBadge}
+        </div>
+    `;
+    
+    return link;
+}
+
+// Load videos when page loads
+window.addEventListener('load', loadVideos);
