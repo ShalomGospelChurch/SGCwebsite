@@ -1,6 +1,8 @@
 async function loadVideos() {
     try {
-        const response = await fetch('data/videos.json');
+        // Check if basePath is defined (for subdirectories), otherwise use current directory
+        const path = typeof basePath !== 'undefined' ? basePath : '';
+        const response = await fetch(path + 'data/videos.json');
         const data = await response.json();
         
         const videoGrid = document.getElementById('videoGrid');

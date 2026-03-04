@@ -1,0 +1,13 @@
+# robots.txt per shalomgospelchurch.it
+
+User-agent: *
+Allow: /
+
+# Cartelle da non indicizzare (opzionale, se hai queste cartelle)
+Disallow: /css/
+Disallow: /js/
+Disallow: /media/favicon/
+Disallow: /data
+
+# Percorso della Sitemap (sostituisci con il tuo dominio reale)
+#Sitemap: https://shalomgospelchurch.it/sitemap.xml
