@@ -1,20 +1,33 @@
 async function loadVideos() {
+    // Check if basePath is defined (for subdirectories), otherwise use current directory
+    const path = typeof basePath !== 'undefined' ? basePath : '';
+    const videoGrid = document.getElementById('videoGrid');
+
+    let data;
     try {
-        // Check if basePath is defined (for subdirectories), otherwise use current directory
-        const path = typeof basePath !== 'undefined' ? basePath : '';
-        const response = await fetch(path + 'data/videos.json');
-        const data = await response.json();
-        
-        const videoGrid = document.getElementById('videoGrid');
-        
-        data.videos.forEach(video => {
-            const videoCard = createVideoCard(video);
-            videoGrid.appendChild(videoCard);
-        });
-        
+        const response = await fetch(path + 'api/videos.php');
+        if (!response.ok) {
+            throw new Error(`API videos.php rispose ${response.status}`);
+        }
+        data = await response.json();
+        if (!Array.isArray(data.videos)) {
+            throw new Error('Formato risposta inatteso');
+        }
     } catch (error) {
-        console.error('Error loading videos:', error);
+        console.error('Error loading videos from API, falling back to static list:', error);
+        try {
+            const fallback = await fetch(path + 'data/videos.json');
+            data = await fallback.json();
+        } catch (fallbackError) {
+            console.error('Error loading fallback video list:', fallbackError);
+            return;
+        }
     }
+
+    data.videos.forEach(video => {
+        const videoCard = createVideoCard(video);
+        videoGrid.appendChild(videoCard);
+    });
 }
 
 // Create video card element
