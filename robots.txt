@@ -9,5 +9,5 @@ Disallow: /js/
 Disallow: /media/favicon/
 Disallow: /data
 
-# Percorso della Sitemap (sostituisci con il tuo dominio reale)
-#Sitemap: https://shalomgospelchurch.it/sitemap.xml
+# Percorso della Sitemap
+Sitemap: https://shalomgospelchurch.it/sitemap.xml

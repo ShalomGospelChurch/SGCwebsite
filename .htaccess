@@ -78,3 +78,33 @@ ErrorDocument 404 /index.html
     AddType font/woff2 .woff2
 </IfModule>
 
+# Block access to dotfiles/dot-directories (.git, .idea, .vscode, .DS_Store, .env...)
+<IfModule mod_authz_core.c>
+    <FilesMatch "^\.">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^\.">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+RedirectMatch 404 /\.git
+RedirectMatch 404 /\.idea
+RedirectMatch 404 /\.vscode
+
+# Block direct access to the YouTube API config (contains the API key) and cache dump
+<Files "config.php">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</Files>
+<IfModule mod_rewrite.c>
+    RewriteRule ^api/cache/ - [F,L]
+</IfModule>
+
