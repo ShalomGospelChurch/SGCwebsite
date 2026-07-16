@@ -8,6 +8,7 @@ Disallow: /css/
 Disallow: /js/
 Disallow: /media/favicon/
 Disallow: /data
+Disallow: /apps/
 
 # Percorso della Sitemap
 Sitemap: https://shalomgospelchurch.it/sitemap.xml
